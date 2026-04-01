@@ -1,6 +1,7 @@
 <script>
+    import Icon from '@iconify/svelte';
+
     let { data } = $props();
-    
     const users = $derived(data.users);
 
     const roleStyles = {
@@ -26,7 +27,8 @@
                     <th class="px-6 py-4">Username</th>
                     <th class="px-6 py-4">Email</th>
                     <th class="px-6 py-4">Role</th>
-                    <th class="px-6 py-4">Aksi</th>
+                    <th class="px-6 py-4">Detail</th>
+                    <th class="flex px-6 py-4 justify-center">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-800">
@@ -41,8 +43,23 @@
                             </span>
                         </td>
                         <td class="px-6 py-4">
-                            <button class="text-blue-400 hover:underline mr-3">Edit</button>
-                            <button class="text-red-400 hover:underline">Hapus</button>
+                            <a 
+                                href="/admin/users/{user.id}"
+                                class="inline-flex items-center gap-1.5 rounded-md bg-emerald-800 px-3 py-1.5 text-xs font-medium text-gray-100 hover:bg-green-900 transition cursor-pointer"
+                            >
+                                <Icon icon="bx:detail" class="w-5 h-5"/>
+                                Detail
+                            </a>
+                        </td>
+                        <td class="flex px-4 py-4 gap-4 justify-center">
+                            <a href="/admin/users/{user.id}/edit" class="inline-flex items-center py-1.5 px-3 gap-1.5 bg-blue-700 rounded-md text-xs font-medium text-gray-100 hover:bg-blue-800 transition-colors cursor-pointer">
+                                <Icon icon="lucide:pencil" class="w-5 h-5"/>    
+                                Edit
+                            </a>
+                            <button class="inline-flex items-center py-1.5 px-3 gap-1.5 bg-red-600 rounded-md text-xs font-medium text-gray-100 hover:bg-rose-700 transition-colors cursor-pointer">
+                                <Icon icon="lucide:trash-2" class="w-5 h-5"/>
+                                Hapus
+                            </button>
                         </td>
                     </tr>
                 {:else}

@@ -5,7 +5,6 @@
 
 	let { children, data } = $props();
     let user = $derived(data.user ?? {name: "Guest", initials: "G"});
-    console.log(user);
 </script>
 
 <div class="flex min-h-screen bg-zinc-100 dark:bg-zinc-950">

@@ -14,7 +14,6 @@ export const handle = async ({ event, resolve }) => {
             
             if (response.ok) {
                 const userData = await response.json();
-                console.log(userData)
                 event.locals.user = {
                     token,
                     name: userData.data.name, // Sesuaikan dengan key dari API kamu (misal: userData.data.name)
