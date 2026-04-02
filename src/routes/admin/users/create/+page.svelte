@@ -1,5 +1,6 @@
 <script>
-import Icon from "@iconify/svelte";
+	import { enhance } from "$app/forms";
+    import Icon from "@iconify/svelte";
     
     let user = $state({
         name: '',
@@ -10,7 +11,7 @@ import Icon from "@iconify/svelte";
 </script>
 
 <div class="p-8">
-    <form method="POST" class="bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-400 dark:border-zinc-800 overflow-hidden">
+    <form method="POST" use:enhance class="bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-400 dark:border-zinc-800 overflow-hidden">
         <div class="p-6 border-b border-zinc-400 dark:border-zinc-800">
             <h1 class="text-xl font-bold text-gray-800 dark:text-gray-100">Tambah User Baru</h1>
         </div>

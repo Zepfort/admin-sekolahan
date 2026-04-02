@@ -1,3 +1,5 @@
+import { fail } from '@sveltejs/kit';
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ fetch, locals }) {
     const token = locals.user?.token;
@@ -41,3 +43,37 @@ export async function load({ fetch, locals }) {
         return { users: [], error: 'Server error' };
     }
 }
+
+export const actions = {
+    delete: async ({ request, locals, fetch }) => {
+        const formData = await request.formData();
+        const id = formData.get('id'); // Ambil id
+        const token = locals.user?.token;
+
+        let success = false;
+        try {
+            const response = await fetch(`http://sekolahan.test/api/users/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                return fail(response.status, { message: 'Gagal menghapus user' });
+            }
+            
+            if (response.ok) {
+                success = true;
+            } 
+        } catch (error) {
+            console.log(error)
+            return fail(500, { message: 'Terjadi kesalahan server' });
+        }
+
+        if (success) {
+            return { success: true };
+        }
+    }
+};

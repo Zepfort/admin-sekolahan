@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="space-y-4 p-6">
-        <form id="edit-form" method="POST">
+        <form method="POST">
             <input type="hidden" name="type" value={user.type} />
 			<div class="grid grid-cols-[120px_1fr] items-center gap-x-4 gap-y-3">
 				<span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">
@@ -57,7 +57,6 @@
             <div class="flex justify-end gap-6 py-6 ">
                 <button
                     type="submit"
-                    form="edit-form"
                     class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-blue-700 px-3 py-1.5 text-xs font-medium text-gray-100 transition-colors hover:bg-blue-800"
                 >
                     <Icon icon="lucide:save" class="h-5 w-5" />
@@ -69,3 +68,4 @@
 	</div>
     
 </div>
+

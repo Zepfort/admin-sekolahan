@@ -1,6 +1,7 @@
 <script>
     import Sidebar from '$lib/components/admin/Sidebar.svelte';
     import Navbar from '$lib/components/admin/Navbar.svelte';
+
     import './layout.css'
 
 	let { children, data } = $props();
@@ -16,6 +17,7 @@
 		</header>
 
 		<main class="p-8 text-zinc-300">
+
 			{@render children()}
 		</main>
 	</div>

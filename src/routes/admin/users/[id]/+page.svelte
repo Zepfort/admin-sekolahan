@@ -1,6 +1,10 @@
 <script>
-	import Icon from '@iconify/svelte';
+	import Icon from '@iconify/svelte';;
+	import { toast } from '$lib/state/toast.svelte.js';
     import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import ModalConfirm from '$lib/components/admin/ModalConfirm.svelte';
+	import { enhance } from '$app/forms';
 
 	let { data } = $props();
 	const user = $derived(data.user);
@@ -12,9 +16,53 @@
 		guru: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
 		default: 'bg-zinc-500/10 text-zinc-500 border-zinc-500/20'
 	};
+
+	let deleteForm;
+
+	let showModal = $state(false);
+	let selectedUserId = $state(null);
+	let selectedUserName = $state('');
+
+	function confrimDelete(id, name) {
+		selectedUserId = id;
+		selectedUserName = name;
+		showModal = true;
+	}
+
+	function executeDelete() {
+		showModal = false;
+		setTimeout(() => {
+			deleteForm.requestSubmit();
+		}, 10);
+	}
 </script>
 
 <div class="p-8">
+	<form 
+		method="POST" 
+		bind:this={deleteForm} 
+		action="/admin/users?/delete" 
+		use:enhance = {() => {
+                return async ({ result }) => {
+					if (result.type === 'success') {
+					toast.send(`User ${user.name} berhasil dihapus!`);
+						
+						goto('/admin/users', { invalidateAll: true });
+                    } 
+                };
+            }}
+	>
+		<input type="hidden" name="id" value={selectedUserId}>	
+	</form>
+
+	<ModalConfirm
+		open={showModal}
+		title="Hapus Pengguna"
+		message="Apakah kamu yakin menghapus {selectedUserName}?. Tindakan tidak dapat dibatalkan."
+		onConfirm={executeDelete}
+		onCancel={() => (showModal = false)}
+	/>
+
 	<div class="mb-6 flex items-start">
 		<a
 			href="/admin/users"
@@ -64,11 +112,13 @@
             <Icon icon="lucide:pencil" class="h-5 w-5" />
             Edit
         </a>
-        <button
-            class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-xs font-medium text-gray-100 transition-colors hover:bg-rose-700"
-        >
-            <Icon icon="lucide:trash-2" class="h-5 w-5" />
-            Hapus
-        </button>
+		<button
+			type="button"
+			onclick={() => confrimDelete(user.id, user.name)}
+			class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-xs font-medium text-gray-100 transition-colors hover:bg-rose-700"
+		>
+			<Icon icon="lucide:trash-2" class="h-5 w-5" />
+			Hapus
+		</button>
     </div>
 </div>

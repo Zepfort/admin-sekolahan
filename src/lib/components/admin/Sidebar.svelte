@@ -8,7 +8,7 @@
   <div class="px-6 h-16 text-white font-bold text-xl flex items-center gap-1.5 border-b border-zinc-800">
     <div class="w-6 h-6 bg-emerald-500 rounded-sm"></div>
     <div class="flex flex-col justify-center">
-        <a href="/admin" class="font-bold text-base text-gray-100 tracking-wide">ADMIN</a>
+        <a href="/admin" class="font-bold text-base text-gray-100 tracking-wide">SEKOLAHAN</a>
         <p class="text-gray-400 font-normal text-[10px] tracking-widest">DASHBOARD</p>
     </div>
   </div>
