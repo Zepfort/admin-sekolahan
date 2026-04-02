@@ -14,9 +14,10 @@
 <div class="p-6">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-white">Daftar Pengguna</h1>
-        <button class="bg-emerald-600 hover:bg-emerald-700 text-gray-100 px-4 py-2 rounded-lg transition cursor-pointer">
+        <a href="/admin/users/create" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-gray-100 px-4 py-2 rounded-lg transition cursor-pointer">
+            <Icon icon="lucide:plus" class="w-6 h-6"/>
             Tambah User
-        </button>
+        </a>
     </div>
 
     <div class="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900">

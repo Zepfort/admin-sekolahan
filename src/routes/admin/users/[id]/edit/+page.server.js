@@ -45,10 +45,7 @@ export async function load({ fetch, params, locals }) {
 /** @type {import('./$types').PageServerLoad} */
 export const actions = {
 	default: async ({ request, params, locals, fetch }) => {
-        console.log("Action dipicu!");
         const formData = await request.formData();
-        const dataForm = Object.fromEntries(formData);
-        console.log("Data yang diterima:", dataForm);
 		const token = locals.user?.token;
 		const { id } = params;
 
