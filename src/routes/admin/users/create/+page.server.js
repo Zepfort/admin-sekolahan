@@ -1,5 +1,3 @@
-
-
 /** @type {import('./$types').Actions} */
 
 import { redirect } from '@sveltejs/kit';

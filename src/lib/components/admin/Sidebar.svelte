@@ -27,6 +27,13 @@
         {isActive('/admin/users') ? 'bg-green-900/30 text-emerald-500' :  'hover:bg-zinc-800 hover:text-gray-100 '}">
       <span>Users</span>
     </a>
+
+    <a 
+        href="/admin/guru" 
+        class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-100 cursor-pointer
+        {isActive('/admin/guru') ? 'bg-green-900/30 text-emerald-500' :  'hover:bg-zinc-800 hover:text-gray-100 '}">
+      <span>Guru</span>
+    </a>
   </div>
 
 </nav>

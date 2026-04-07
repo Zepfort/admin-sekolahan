@@ -1,5 +1,6 @@
 <script>
-	import { enhance } from "$app/forms";
+    import { toast } from "$lib/state/toast.svelte";
+	import { enhance, applyAction } from "$app/forms";
     import Icon from "@iconify/svelte";
     
     let user = $state({
@@ -11,14 +12,24 @@
 </script>
 
 <div class="p-8">
-    <form method="POST" use:enhance class="bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-400 dark:border-zinc-800 overflow-hidden">
+    <form 
+        method="POST" 
+        class="bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-400 dark:border-zinc-800 overflow-hidden"
+        use:enhance = {() => {
+            return async ({ result }) => {
+                if (result.type === 'redirect') {
+                    toast.send("Guru berhasil ditambahkan!");
+                }
+                await applyAction(result); 
+            };
+        }}>
         <div class="p-6 border-b border-zinc-400 dark:border-zinc-800">
             <h1 class="text-xl font-bold text-gray-800 dark:text-gray-100">Tambah User Baru</h1>
         </div>
 
         <div class="p-6 space-y-4">
             <div class="grid grid-cols-[120px_1fr] items-center gap-4">
-                <span class="text-xs font-semibold text-zinc-500 uppercase">Nama</span>
+                <span class="text-xs font-semibold dark:text-gray-300 uppercase">Nama</span>
                 <input 
                     name="name" 
                     bind:value={user.name} 
@@ -26,8 +37,7 @@
                     required 
                     class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" 
                 />
-
-                <span class="text-xs font-semibold text-zinc-500 uppercase">Username</span>
+                <span class="text-xs font-semibold dark:text-gray-300 uppercase">Username</span>
                 <input 
                     name="username" 
                     bind:value={user.username} 
@@ -35,8 +45,7 @@
                     required 
                     class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" 
                 />
-
-                <span class="text-xs font-semibold text-zinc-500 uppercase">Email</span>
+                <span class="text-xs font-semibold dark:text-gray-300 uppercase">Email</span>
                 <input 
                     name="email" 
                     bind:value={user.email} 
@@ -44,8 +53,7 @@
                     required 
                     class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" 
                 />
-
-                <span class="text-xs font-semibold text-zinc-500 uppercase">Password</span>
+                <span class="text-xs font-semibold dark:text-gray-300 uppercase">Password</span>
                 <input 
                     name="password" 
                     bind:value={user.password} 
@@ -53,10 +61,7 @@
                     required 
                     class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" 
                 />
-
-
-
-                <span class="text-xs font-semibold text-zinc-500 uppercase">Role</span>
+                <span class="text-xs font-semibold dark:text-gray-300 uppercase">Role</span>
                 <select 
                     name="type" 
                     bind:value={user.type} 

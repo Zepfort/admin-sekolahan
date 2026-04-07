@@ -84,7 +84,7 @@
 			</span>
 		</div>
 
-		<div class="space-y-4 p-6">
+		<div class="space-y-4 p-6">DD
 			<div class="grid grid-cols-[120px_1fr] items-center gap-x-4 gap-y-3">
 				<span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">
 					Nama Lengkap

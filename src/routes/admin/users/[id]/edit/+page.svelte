@@ -1,6 +1,8 @@
 <script>
 	import Icon from "@iconify/svelte";
     import { page } from '$app/stores';
+    import { enhance } from "$app/forms";
+    import { toast } from "$lib/state/toast.svelte.js";
 
     const userId = $page.params.id;
 	let { data } = $props()
@@ -25,7 +27,17 @@
 		</div>
 
 		<div class="space-y-4 p-6">
-        <form method="POST">
+        <form 
+            method="POST"
+            use:enhance={() => {
+                    return async ({ result }) => {
+                        if (result.type === 'redirect') {
+                            toast.send("Data guru berhasil diperbarui!");
+                        } else if (result.type === 'failure') {
+                            toast.send(result.data?.message || "Gagal memperbarui data", "error");
+                        }
+                    };
+                }}>
             <input type="hidden" name="type" value={user.type} />
 			<div class="grid grid-cols-[120px_1fr] items-center gap-x-4 gap-y-3">
 				<span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">

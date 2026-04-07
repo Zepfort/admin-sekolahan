@@ -5,25 +5,19 @@
 	import ModalConfirm from '$lib/components/admin/ModalConfirm.svelte';
 	import Icon from '@iconify/svelte';
 
-	let { data } = $props(); // Menerima data dari server
-	const users = $derived(data.users); // Membuat data users menjadi reaktif
-
-	const roleStyles = {
-		admin: 'bg-rose-500/10 text-rose-500 border-rose-500/20',
-		guru: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-		default: 'bg-zinc-500/10 text-zinc-500 border-zinc-500/20'
-	};
+	let { data } = $props(); 
+	const gurus = $derived(data.guru); 
 
 	// State kontrol modal
 	let showModal = $state(false);
-	let selectedUserId = $state(null);
-	let selectedUserName = $state('');
+	let selectedGuruId = $state(null);
+	let selectedGuruName = $state('');
 
 	let deleteForm;
 
-	function confrimDelete(id, name) {
-		selectedUserId = id;
-		selectedUserName = name;
+	function confrimDelete(id, nama) {
+		selectedGuruId = id;
+		selectedGuruName = nama;
 		showModal = true;
 	}
 
@@ -35,13 +29,13 @@
 
 <div class="p-6">
 	<div class="mb-6 flex items-center justify-between">
-		<h1 class="text-2xl font-bold text-white">Daftar Pengguna</h1>
+		<h1 class="text-2xl font-bold text-white">Daftar Guru</h1>
 		<a
-			href="/admin/users/create"
+			href="/admin/guru/create"
 			class="flex cursor-pointer items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-gray-100 transition hover:bg-emerald-700"
 		>
 			<Icon icon="lucide:plus" class="h-6 w-6" />
-			Tambah User
+			Tambah Guru
 		</a>
 	</div>
 
@@ -54,54 +48,49 @@
             use:enhance = {() => {
                 return async ({ result }) => {
 					if (result.type === 'success') {
-					toast.send(`User ${selectedUserName} berhasil dihapus!`);
+					toast.send(`User ${selectedGuruName} berhasil dihapus!`);
 						
-						goto('/admin/users', { invalidateAll: true });
+						goto('/admin/guru', { invalidateAll: true });
                     } 
                 };
             }}>
-            <input type="hidden" name="id" value={selectedUserId} />
+            <input type="hidden" name="id" value={selectedGuruId} />
         </form>
 
 		<ModalConfirm
 			open={showModal}
 			title="Hapus Pengguna"
-			message="Apakah kamu yakin menghapus {selectedUserName}?"
+			message="Apakah kamu yakin menghapus {selectedGuruName}?"
 			onConfirm={executeDelete}
 			onCancel={() => (showModal = false)}
 		/>
 		<table class="w-full text-left text-zinc-300">
 			<thead class="bg-emerald-900 text-xs text-zinc-100 uppercase">
 				<tr>
+					<th class="px-6 py-4">NIP</th>
 					<th class="px-6 py-4">Nama</th>
-					<th class="px-6 py-4">Username</th>
+					<th class="px-6 py-4">Gender</th>
 					<th class="px-6 py-4">Email</th>
-					<th class="px-6 py-4">Role</th>
+					<th class="px-6 py-4">Pendidikan</th>
 					<th class="px-6 py-4">Detail</th>
 					<th class="flex justify-center px-6 py-4">Aksi</th>
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-zinc-800">
-				{#each users as user, i (user.id)}
+				{#each gurus as guru, i (guru.id)}
 					<tr
 						class="transition-colors hover:bg-zinc-600/60 {i % 2 === 0
 							? 'bg-zinc-900'
 							: 'bg-zinc-950'}"
 					>
-						<td class="px-6 py-4 font-medium text-white">{user.name}</td>
-						<td class="px-6 py-4">{user.username}</td>
-						<td class="px-6 py-4">{user.email}</td>
-						<td class="px-6 py-4">
-							<span
-								class="rounded px-2 py-1 text-xs font-medium {roleStyles[user.type] ||
-									roleStyles.default}"
-							>
-								{user.type}
-							</span>
-						</td>
+						<td class="px-6 py-4 font-medium text-white">{guru.nip}</td>
+						<td class="px-6 py-4">{guru.nama}</td>
+						<td class="px-6 py-4">{guru.gender}</td>
+						<td class="px-6 py-4">{guru.email}</td>
+						<td class="px-6 py-4">{guru.pendidikan}</td>
 						<td class="px-6 py-4">
 							<a
-								href="/admin/users/{user.id}"
+								href="/admin/guru/{guru.id}"
 								class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-emerald-800 px-3 py-1.5 text-xs font-medium text-gray-100 transition hover:bg-green-900"
 							>
 								<Icon icon="bx:detail" class="h-5 w-5" />
@@ -110,7 +99,7 @@
 						</td>
 						<td class="flex justify-center gap-4 px-4 py-4">
 							<a
-								href="/admin/users/{user.id}/edit"
+								href="/admin/guru/{guru.id}/edit"
 								class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-blue-700 px-3 py-1.5 text-xs font-medium text-gray-100 transition-colors hover:bg-blue-800"
 							>
 								<Icon icon="lucide:pencil" class="h-5 w-5" />
@@ -118,7 +107,7 @@
 							</a>
 							<button
 								type="button"
-								onclick={() => confrimDelete(user.id, user.name)}
+								onclick={() => confrimDelete(guru.id, guru.nama)}
 								class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-xs font-medium text-gray-100 transition-colors hover:bg-rose-700"
 							>
 								<Icon icon="lucide:trash-2" class="h-5 w-5" />
