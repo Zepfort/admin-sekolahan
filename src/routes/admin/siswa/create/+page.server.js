@@ -39,7 +39,7 @@ export const actions = {
 
             console.error("Gagal simpan siswa:", error);
             return fail(error.status || 500, { 
-                message: error.body?.message || 'Gagal menyimpan data siswa. Periksa kembali inputan Anda.' 
+                message: error.body?.message || 'Gagal menyimpan data siswa. Periksa kembali inputan Anda!' 
             });
         }
 

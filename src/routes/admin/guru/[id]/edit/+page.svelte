@@ -23,7 +23,7 @@
 
     <div class="min-w-2xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
         <div class="flex items-center justify-between border-b border-zinc-800 p-6">
-            <h1 class="text-xl font-bold text-white">Edit Profil Guru: {guru.nama}</h1>
+            <h1 class="text-xl font-bold text-gray-100">Edit Profil Guru: {guru.nama}</h1>
         </div>
 
         <div class="p-6">
@@ -39,7 +39,8 @@
 
                         await applyAction(result);
                     };
-                }}>
+                }}
+            >
                 <div class="grid grid-cols-[150px_1fr] items-center gap-x-4 gap-y-4">
                     <h2 class="col-span-2 text-sm font-bold text-emerald-500 border-b border-zinc-800 pb-2 mb-2">Informasi Akun</h2>
                     

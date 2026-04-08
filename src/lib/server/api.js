@@ -1,8 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 /**
- * Fungsi pembantu untuk melakukan request ke API Laravel
- * @param {typeof fetch} fetch - Fungsi fetch dari SvelteKit
+ * @param {typeof fetch} fetch - Fungsi fetch
  * @param {Object} options - Opsi untuk request
  */
 

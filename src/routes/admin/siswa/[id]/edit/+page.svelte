@@ -24,7 +24,7 @@
 
     <div class="min-w-2xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
         <div class="flex items-center justify-between border-b border-zinc-800 p-6">
-            <h1 class="text-xl font-bold text-white">Edit Profil Siswa: {siswa.nama}</h1>
+            <h1 class="text-xl font-bold text-gray-100">Edit Profil Siswa: {siswa.nama}</h1>
         </div>
 
         <div class="p-6">

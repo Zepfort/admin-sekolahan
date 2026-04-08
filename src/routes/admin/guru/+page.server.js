@@ -1,4 +1,3 @@
-// src/routes/admin/guru/+page.server.js
 import { apiRequest } from '$lib/server/api';
 import { fail } from '@sveltejs/kit';
 
@@ -34,10 +33,10 @@ export const actions = {
             });
 
             return { success: true };
-        } catch (err) {
-            console.error(err);
-            return fail(err.status || 500, { 
-                message: err.body?.message || 'Gagal menghapus data guru' 
+        } catch (error) {
+            console.error(error);
+            return fail(error.status || 500, { 
+                message: error.body?.message || 'Gagal menghapus data guru!' 
             });
         }
     }

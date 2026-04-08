@@ -67,15 +67,15 @@
     <div class="min-w-2xl overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
         <div class="flex items-center justify-between border-b border-zinc-800 p-6">
             <h1 class="text-xl font-bold text-white">Detail Guru</h1>
-            </div>
+        </div>
 
         <div class="space-y-6 p-6">
-            <div class="grid grid-cols-[150px_1fr] items-start gap-x-4 gap-y-4">
-                <span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">Nama Lengkap</span>
-                <p class="font-medium text-zinc-200">{guru.nama}</p>
-
+            <div class="grid grid-cols-[150px_1fr] items-start gap-x-4 gap-y-4">  
                 <span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">NIP</span>
                 <p class="text-zinc-200 font-mono">{guru.nip}</p>
+
+                <span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">Nama Lengkap</span>
+                <p class="font-medium text-zinc-200">{guru.nama}</p>
 
                 <span class="text-xs font-semibold tracking-wider text-zinc-500 uppercase">Email</span>
                 <p class="text-zinc-200">{guru.email}</p>
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <div class="flex justify-end gap-6 py-6 ">
+    <div class="flex justify-end gap-6 py-6">
         <a href="/admin/guru/{guruId}/edit"
             class="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-gray-100 transition-colors hover:bg-blue-800"
         >
