@@ -47,7 +47,7 @@ export async function load({ fetch, locals }) {
 export const actions = {
     delete: async ({ request, locals, fetch }) => {
         const formData = await request.formData();
-        const id = formData.get('id'); // Ambil id
+        const id = formData.get('id'); 
         const token = locals.user?.token;
 
         let success = false;
