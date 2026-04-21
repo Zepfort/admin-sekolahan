@@ -17,27 +17,38 @@
         <form method="POST" use:enhance>
             <div class="mb-4">
                 <label for="email" class="block text-sm mb-2">Full Name</label>
-                <input name="email" type="text" placeholder="Your Name" required
-                class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
+                <input name="name" type="text" placeholder="Your Name" required
+                    class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-sm mb-2">User Name</label>
+                <input name="username" type="text" placeholder="Your userame" required
+                    class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-sm mb-2">User Name</label>
+                <select name="type" required
+                    class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" >
+                    <option>Pilih Tipe</option>
+                    <option value="admin">Admin</option>
+                    <option value="guru">Guru</option>
+                </select>
             </div>
 
             <div class="mb-4">
                 <label for="email" class="block text-sm mb-2">Email</label>
                 <input name="email" type="email" placeholder="demo@example.com" required
-                class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
+                    class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
             </div>
 
             <div class="mb-4">
                 <label for="password" class="block text-sm mb-2">Password</label>
                 <input name="password" type="password" placeholder="••••••••" required
-                class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
+                    class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
             </div>
 
-            <div class="mb-4">
-                <label for="password" class="block text-sm mb-2">Confirm Password</label>
-                <input name="password" type="password" placeholder="••••••••" required
-                class="w-full text-gray-800 dark:text-gray-100 bg-zinc-50 dark:bg-zinc-950 border border-zinc-800 rounded-md p-2 text-sm focus:ring-1 focus:ring-green-700 focus:border focus:border-green-600 outline-none" />
-            </div>
 
             <div class="mb-16 flex justify-center">
                 <span class="text-base text-gray-100 font-normal"> I agree to the Term of Service and Privacy Policy</span>
@@ -50,8 +61,6 @@
         {#if form?.error}
         <p class="text-red-500 text-sm mt-4 text-center">{form.error}</p>
         {/if}
-
-
 
         <p class="text-center text-sm text-zinc-300 mt-8">
             Already have an account? <a href="/login" class="text-green-600 font-bold hover:underline"> Login</a>
